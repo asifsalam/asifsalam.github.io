@@ -4,12 +4,8 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
-
-### More Information
-
-A place to include any other types of information that you'd like to include about yourself.
+I am originally from a small village in northern India, but currently live and work in Stockholm, Sweden.  My wife is a teacher, my older son is at university, and my younger son is at school.
 
 ### Contact me
 
-[email@domain.com](mailto:email@domain.com)
+[asif.salam@hotmail.com](mailto:asif.salam@hotmail.com)
