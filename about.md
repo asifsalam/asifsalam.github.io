@@ -4,7 +4,7 @@ title: About
 permalink: /about/
 ---
 
-I am originally from a small village in northern India, but currently live and work in Stockholm, Sweden.  My wife is a teacher, my older son is at university, and my younger son is at school.
+I am an analyst, currently living and working in Stockholm, Sweden, with my wife and two baby boys (16 and 20).  I love (Darjeeling) tea, ice cream, crime fiction and science fact. 
 
 ### Contact me
 
