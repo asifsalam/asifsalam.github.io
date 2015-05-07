@@ -16,12 +16,12 @@ For many of us, there's just no getting away from PowerPoint.  So if you use R (
 In this post, we'll go through how to recreate one of the slides from Anand's talk.  We'll scrape some data on Clint Eastwood from IMDB In the end, we should have a pretty neat PowerPoint slide with Clint Eastwood's filmography, using data from [IMDB][4].
 (Clearly PowerPoint has a powerful animation engine, and the sophisticated object model allows you to programmatically manipulate almost everything.  It would have been too easy with good documentation too, so Microsoft has organized it like a puzzle with pieces hidden all over the place.)
 
-Let's get started.
+Let's get started.  
 ##Setup
-I'm using:
-  * Windows 7 (64bit)
-* Office 2013 (64bit)
-* R version 3.1.3
+I'm using:  
+* Windows 7 (64bit)  
+* Office 2013 (64bit)  
+* R version 3.1.3  
 * RStudio verison 0.98
 
 We'll need a few packages.  
@@ -30,11 +30,12 @@ We'll need a few packages.
 3. [rvest][4] by Hadley Wickham. Easily scrape data from the web.
 
 Load the packages:
-```{r}
+
+```r  
 install.packages(c("RDCOMClient","XML","rvest"))  
-library("RDCOMClient")  
-library("XML")  
-library("rvest")
+library("RDCOMClient")   
+library("XML")   
+library("rvest")   
 ```
 
 ##RDCOMClient Basics
@@ -47,14 +48,26 @@ With these basic capabilities, we can access and manipulate all the objects expo
 
 Let's create a new PowerPoint presentation from R
 In R
+Load the packages:
 
+```  
+install.packages(c("RDCOMClient","XML","rvest"))  
+library("RDCOMClient")   
+library("XML")  
+
+   
+```
+
+```
+library("test")
+```
 
   
 
 
 
   
-<!-- ![Caution]({{ site.baseurl }}/images/caution_finland_road_sign_189.svg) -->
+
 
 
 [1]:https://www.youtube.com/watch?v=aKCXj1DyEhM "S Anand"
