@@ -31,9 +31,9 @@ We'll need a few packages.
 
 Load the packages:
 ```{r}
-install.packages(c("RDCOMClient","XML","rvest"))
-library("RDCOMClient")
-library("XML")
+install.packages(c("RDCOMClient","XML","rvest"))  
+library("RDCOMClient")  
+library("XML")  
 library("rvest")
 ```
 
