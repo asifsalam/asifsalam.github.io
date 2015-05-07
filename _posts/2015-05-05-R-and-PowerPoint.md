@@ -3,7 +3,7 @@ layout: post
 title: PowerPoint from R - Create Amazing Slides
 ---
 
-For many of us, there's just no getting away from PowerPoint.  So if you use R (or Python) for data analysis, and PowerPoint for presenting/distributing the results, it's worthwhile learning how to include this last step into your R workflow.  In this talk, [S Anand uses Python and **pywin32**][1] to create some jaw dropping effects in Powerpoint.    
+For many of us, there's just no getting away from PowerPoint.  So if you use R (or Python) for data analysis, and PowerPoint for presenting/distributing the results, it's worthwhile learning how to include this last step into your workflow.  In this talk, [S Anand uses Python and **pywin32**][1] to create some jaw dropping effects in Powerpoint.    
 
 [**RDCOMClient**][2] by Duncan Temple Lang allows you to do the same thing using R. It provides the ability to "access and control applications such as Excel, Word, Power Point, Web browsers etc."  Beyond efficiency and repeatability, programmatic access enables you to do things that just would not be possible with point and click.  
 
