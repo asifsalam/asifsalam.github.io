@@ -19,7 +19,7 @@ html {
 
 body {
 	background: $white;
-  font: 18px/1.4 $helvetica;
+  font: 18px/1.4 $helveticaNeue;
   color: $darkGray;
 }
 
@@ -281,6 +281,26 @@ nav {
 footer {
   padding: 20px 0;
   text-align: center;
+}
+
+.centre_image {
+    vertical-align: middle;
+}
+
+.warning div {
+  //width: 250px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  background-color: #f2eeee;
+  border: 1px solid #d9d9d9;
+    
+}
+//style="height:50px;border:1px solid #d9d9d9; vertical-align: bottom; background-color:#f2eeee; text-align:center; "
+.warning_span {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;      
 }
 
 // Settled on moving the import of syntax highlighting to the bottom of the CSS

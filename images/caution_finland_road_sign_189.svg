@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://web.resource.org/cc/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://inkscape.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="450"
+   height="400"
+   id="svg1551"
+   sodipodi:version="0.32"
+   inkscape:version="0.43"
+   version="1.0"
+   sodipodi:docbase="/home/tomilepp/svg/liikennemerkit"
+   sodipodi:docname="Muu vaara 189.svg">
+  <defs
+     id="defs1553" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35355339"
+     inkscape:cx="234"
+     inkscape:cy="303.30308"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     inkscape:window-width="760"
+     inkscape:window-height="544"
+     inkscape:window-x="284"
+     inkscape:window-y="10" />
+  <metadata
+     id="metadata1556">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       id="path1427"
+       d="M 19.205,396.84 C 3.935,396.36 -3.075,381.38 3.195,369.1 L 208.975,12.4 C 217.265,-0.74 233.445,0.93 240.925,12.4 L 446.705,369.1 C 452.855,380.4 446.725,394.56 433.085,396.73 L 19.205,396.84"
+       style="fill:#ffd90f;fill-rule:evenodd;stroke:none" />
+    <path
+       id="path1429"
+       d="M 18.735,391.59 C 8.225,390.98 3.015,380.03 7.735,371.73 L 213.515,15.03 C 218.435,6.62 230.855,5.85 236.325,15.03 L 442.165,371.73 C 447.205,379.94 441.005,391.74 430.695,391.58 L 18.735,391.59"
+       style="fill:#ff163c;fill-rule:evenodd;stroke:none" />
+    <path
+       id="path1431"
+       d="M 55.815,357.21 L 224.915,64 L 394.075,357.21 L 55.815,357.21"
+       style="fill:#ffd90f;fill-rule:evenodd;stroke:none" />
+    <path
+       id="path1433"
+       d="M 224.125,307.14 C 228.525,307.35 232.275,308.62 235.365,310.97 C 241.375,315.76 243.585,322.26 241.995,330.48 C 240.485,336.07 236.885,340.18 231.175,342.8 C 226.805,344.75 222.105,344.75 217.075,342.8 C 212.675,341.43 208.485,337.11 206.255,330.48 C 204.525,319.33 208.665,313.02 214.915,309.66 C 217.285,308.14 220.355,307.3 224.125,307.14"
+       style="fill:#000000;fill-rule:evenodd;stroke:none" />
+    <path
+       id="path1435"
+       d="M 224.125,131.84 L 226.515,131.96 L 228.845,132.44 L 235.305,135.61 L 238.705,138.96 L 241.085,143.09 L 242.405,147.7 L 242.585,150.14 L 233.315,278.66 C 232.925,284.23 229.525,287.79 224.115,287.93 C 218.225,287.57 215.015,284.07 214.905,278.66 L 205.615,149.22 L 206.305,145.36 L 207.065,143.83 L 208.215,140.94 L 209.525,138.96 L 211.145,137.17 L 212.935,135.61 L 214.965,134.3 L 217.115,133.22 L 219.385,132.44 L 221.715,131.97 L 224.105,131.85"
+       style="fill:#000000;fill-rule:evenodd;stroke:none" />
+  </g>
+</svg>
