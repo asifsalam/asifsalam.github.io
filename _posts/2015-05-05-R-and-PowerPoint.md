@@ -14,7 +14,7 @@ For many of us, there's just no getting away from PowerPoint.  So if you use R (
 
 In this tutorial, we'll learn how to create some elements of the S Anand's talk, and a few other things, with a focus on interaction and animation.  We'll learn the basics of accessing methods and properties of PowerPoint VBA objects, then scrape data on Clint Eastwood's movies from [IMDB][4], and use it to create a slide.  In the end, we should have a cool, fun PowerPoint slide with Clint Eastwood's filmography.  
 
-(Clearly PowerPoint has a powerful animation engine, and the [sophisticated object model][6] allows you to programmatically manipulate almost everything.  I suppose properly structured documentation would have made it too accessible.  As a beginner, to me, the [Microsoft documentation][5] seemed to be organized as a puzzle.)
+(Clearly PowerPoint has a powerful animation engine, and the [sophisticated object model][6] allows you to programmatically manipulate almost everything. The [Microsoft documentation][5] seems to be organized as a challenge, at least for beginners.)
 
 Let's get started.  
 ##Setup
