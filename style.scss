@@ -18,7 +18,8 @@ html {
 }
 
 body {
-	background: $white;
+	//background: $white;
+    background: $backgroundGray;
   font: 18px/1.4 $helveticaNeue;
   color: $darkGray;
 }
@@ -288,11 +289,12 @@ footer {
     vertical-align: middle;
 }
 
-.warning div {
+.warning {
   //width: 250px;
-  height: 50px;
-  line-height: 50px;
-  text-align: center;
+  //height: 50px;
+  //line-height: 50px;
+  text-align: left;
+  vertical-align: middle;
   background-color: #f2eeee;
   border: 1px solid #d9d9d9;
     
