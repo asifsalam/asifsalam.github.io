@@ -253,7 +253,7 @@ Next up:
 Part 3 - At last! We'll use the data to play around with more advanced animation and interaction in PowerPoint.
 
 Previously:
-[Part 1] - RDCOMClient basics
+[Part 1][10] - RDCOMClient basics
 
 [1]:http://nbviewer.ipython.org/github/sanand0/ipython-notebooks/blob/master/Office.ipynb
 [2]:http://www.imdb.org/ "IMDB"
