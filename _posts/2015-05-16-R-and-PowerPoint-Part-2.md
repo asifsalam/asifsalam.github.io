@@ -207,8 +207,8 @@ Now, we need to work on getting the poster images.  We'll name these based on th
 
 # Loop through the films, get the posters and save to the img directory, using the file names just assigned.  If no poster is found, then we'll handle it manually.
 for (i in 1:nrow(films)) {
-    img_page <- html(film$url[i])
-    img_node <- img_page %>% html_nodes(xpath='//td[@id="img_primary"]//img')
+    img_node <- html(films$url[i] %>% 
+				html_nodes(xpath='//td[@id="img_primary"]//img')
     if (length(img_node)==0) {
         films$img_file[i] <- "img/img00.jpg"
         cat(i," : img file NOT FOUND: ",films$img_file[i],"\n")
@@ -252,6 +252,8 @@ That required some work! But now have the poster images and some basic data.
 Next up:  
 Part 3 - At last! We'll use the data to play around with more advanced animation and interaction in PowerPoint.
 
+Previously:
+[Part 1] - RDCOMClient basics
 
 [1]:http://nbviewer.ipython.org/github/sanand0/ipython-notebooks/blob/master/Office.ipynb
 [2]:http://www.imdb.org/ "IMDB"
