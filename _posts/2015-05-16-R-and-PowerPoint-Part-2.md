@@ -12,11 +12,11 @@ Let's get started.
 
 You should have the same R/RStudio setup and the packages we loaded in <a href="{{site.url}}/R-and-PowerPoint-Part-1/">Part 1</a>.  
 
-We will need some packages for web scraping and data manipulation.  
-1 - [`rvest`][6] by Hadley Wickham. Web scraping simplified.  
-2 - [`stringr`][7] by Hadley Wickham. String manipulation simplified.  
-3 - [`plyr`][8] by Hadley Wickham. Apply simplified.  
-4 - [`dlyr`][11] by Hadley Wickham.  Data manipulation simplified.
+We will need some Hadley Wickham voodoo for web scraping and data manipulation.  
+1 - [`rvest`][6] Web scraping simplified.  
+2 - [`stringr`][7] String manipulation simplified.  
+3 - [`plyr`][8] Apply simplified.  
+4 - [`dlyr`][11] Data manipulation simplified.
 
 ## Scraping data using rvest
 
