@@ -1,7 +1,21 @@
 ---
 layout: post
-title: How to Create Amazing PowerPoint Slides using R
+title: How to Create Amazing PowerPoint Slides using R - Part 2 (3)
 ---
+
+Now that we have a few basic tools for manipulating PowerPoint slides, let's use the power of R to build really amazing slides. In this post we'll get some data that we will use in Part 3 for constructing a PowerPoint slide with lots of (needless) animation, and some interaction.
+
+You should have the same R/RStudio setup and the packages we loaded in [Part 1][1]
+
+Let's get started.
+
+
+
+
+
+
+
+
 
 Let's face it, PowerPoint isn't going anywhere. Even if you use R (or Python) for data analysis, PowerPoint is how you distribute and communicate results, and learning how to create those decks as part of your R workflow can pay off.  Beyond efficiency, and repeatability, programmatic access enables you to do things that just aren't possible with point and click.  In this tutorial, we'll learn how to automate PowerPoint using R.
 
@@ -11,7 +25,7 @@ We will recreate some elements of [S Anand's talk][1], and a few other things, w
 
 <div class="warning"><p style="margin: 0 0 0 10px">
     <img class="centre_image" src="/images/caution_finland_road_sign_189.svg" alt="Caution" style="width:50px; margin:2px 0 0 5px; align:left;" >
-    <b><i>I love animation, so there is a lot of it</i></b></p>
+    <b><i>Gratuitous animation ahead</i></b></p>
 </div>
 
 (Clearly PowerPoint has a powerful animation engine, and the [object model][6] allows you to programmatically manipulate almost everything. The [Microsoft documentation][5], however, seems to be organized as a challenge, at least for beginners.)
@@ -98,94 +112,14 @@ End Sub
 
 ```
 
-As you can see, Microsoft has defined a set of constants for each element of the presentation, such as shape, animation, trigger, etc.  I remember I had to search for a while to find a consolidated list of all the enumerated constants.  I created [a file][12] and just read them into one variable, `ms`. (Download it to your working directory if you want to execute the code.)
 
-In the ```ÀddEffect``` method above, you'll notice an "empty" argument.  That tripped me up for a while, since it doesn't work with R.
-The [AddEffect method][8] shows the arguments the method expect ```(expression.AddEffect(Shape, effectId, Level, trigger, Index))```.  Using an explicitly named argument (trigger) works.
-
-Let's add the shapes and animation to the presentation created above:
-
-```r
-source("mso.txt")
-shp1 <- slide1[["Shapes"]]$AddShape(ms$msoShape12pointStar,20,20,100,100)
-slide1[["TimeLine"]][["MainSequence"]]$AddEffect(shp1,ms$msoAnimEffectFadedSwivel,
-                                                        trigger=ms$msoAnimTriggerAfterPrevious)
-slide1[["TimeLine"]][["MainSequence"]]$AddEffect(shp1,ms$msoAnimEffectPathBounceRight,
-                                                        trigger=ms$msoAnimTriggerAfterPrevious)
-slide1[["TimeLine"]][["MainSequence"]]$AddEffect(shp1,ms$msoAnimEffectSpin,
-                                                        trigger=ms$msoAnimTriggerAfterPrevious)
-
-shp1$PickupAnimation()
-shp2 <- slide1[["Shapes"]]$AddShape(ms$msoShapeHexagon,100,20,100,100)
-shp2$ApplyAnimation()
-
-shp3 <- slide1[["Shapes"]]$AddShape(ms$msoShapeCloud,180,20,100,200)
-shp3$ApplyAnimation()
-
-```
-
-This should create a presentation with the three shapes.  If you go into animation mode, the shapes should appear, with the animations triggered.
-
-The [`shape` object comes with a long list of properties and methods][9].  Let's see how to use some of them. We'll add text, and change colors.
-
-Each `shape` has an associated [`TextFrame property`][10], which returns an object containing all the text related elements of the shape.
-
-```r
-# Add text to the shapes.  While this works, R files a complaint
-shp1[["TextFrame"]][["TextRange"]][["Text"]] <- "Shp1"
-
-# This way seems to function better
-shp1_tr <- shp1[["TextFrame"]][["TextRange"]]
-shp1_tr[["Text"]] <- "ONE"
-```
-
-Let's set some shape attributes.  
-The `Fill` property is used for the colors, and the `Line`Line property for the border.
-
-```r
-shp1_color <- shp1[["Fill"]]
-shp1_color[["ForeColor"]][["RGB"]] <- (0+170*256+170*256^2)
-# That's how the RGB value is calculated: r +  g*256 + b*256*256 
-
-# Remove the line
-shp1_line <- shp1[["Line"]]
-shp1_line[["Visible"]] <- 0
-
-```
-
-Now, do it for the other shapes as well.  We'll create a function to handle the color encoding:
-
-```
-# Create function for the rgb calculation 
-pp_rgb <- function(r,g,b) {
-    return(r + g*256 + b*256^2)
-}
-
-shp2_tr <- shp2[["TextFrame"]][["TextRange"]]
-shp2_tr[["Text"]] <- "TWO"
-shp2_color <- shp2[["Fill"]]
-shp2_color[["ForeColor"]][["RGB"]] <- pp_rgb(170,170,0)
-shp2_line <- shp2[["Line"]]
-shp2_line[["Visible"]] <- 0
-
-shp3_tr <- shp3[["TextFrame"]][["TextRange"]]
-shp3_tr[["Text"]] <- "THREE"
-shp3_color <- shp3[["Fill"]]
-shp3_color[["ForeColor"]][["RGB"]] <- pp_rgb(170,0,170)
-shp3_line <- shp3[["Line"]]
-shp3_line[["Visible"]] <- 0
-
-# Finally, save the file in the working directory
-presentation$SaveAs(paste0(getwd(),"/PowerPoint_R_Part_1.pptx"))
-
-```
 The code and the PowerPoint file created are available from [Github](https://github.com/asifsalam/PowerPoint_from_R).
 
 Coming up:  
 Part 2 - We'll scrape some data using [`XML`][3] and [`rvest`][4] and create a dataset of Clint Eastwood's movies.  
 Part 3 - Then some fun! We'll use the data to play around with more advanced animation and interaction in PowerPoint.
 
-[1]:https://www.youtube.com/watch?v=aKCXj1DyEhM "S Anand YouTube"
+[1]:"{{ site.url }} /R-and-PowerPoint-Part-1/"
 [2]:http://www.omegahat.org/RDCOMClient/ "RCDOMClient"
 [3]:http://www.omegahat.org/RSXML/ "XML Package for R"
 [4]:https://github.com/hadley/rvest "rvest"
