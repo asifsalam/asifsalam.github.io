@@ -153,11 +153,11 @@ img {
 //
 
 .wrapper-masthead {
-  margin-bottom: 50px;
+  margin-bottom: 10px;
 }
 
 .masthead {
-  padding: 20px 0;
+  padding: 10px 0;
   border-bottom: 1px solid $lightGray;
 
   @include mobile {
@@ -167,9 +167,9 @@ img {
 
 .site-avatar {
   float: left;
-  width: 70px;
+  width: 80px;
   height: 70px;
-  margin-right: 15px;
+  margin-right: 10px;
 
   @include mobile {
     float: none;

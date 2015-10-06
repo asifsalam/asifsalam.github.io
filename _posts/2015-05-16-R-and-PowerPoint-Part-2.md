@@ -1,16 +1,17 @@
 ---
 layout: post
-title: How to Create Amazing PowerPoint Slides using R - Part 2 (3)
+title: Create amazing PowerPoint slides using R - Getting the data
 ---
+###Part 2 (3)
 
-Now that we have a few basic tools for manipulating PowerPoint slides (<a href="{{site.url}}/R-and-PowerPoint-Part-1/">Part 1</a>), we'll use R to scrape some data that we'll use to create Mr. Eastwood's filmography slide. In this post we'll scrape data from IMDDB, doing in R what [S Anand has done in Python, (and generously shared in this IPython notebook)][1].  In Part 3 (<i>coming soon</i>), we will use this data for constructing a PowerPoint slide with lots of (needless, but educational) animation, and interaction.  
+Now that we have a few basic tools for manipulating PowerPoint slides (<a href="{{site.url}}/R-and-PowerPoint-Part-1/">Part 1</a>), let's scrape the data we need to create Mr. Eastwood's filmography slide. We'll get the data from [IMDB][2], doing in R what [S Anand has done in Python][1].  In [Part 3][13], we will use this data for constructing a PowerPoint slide with lots (needless, but educational) animation, and interaction.  
 
-<i>Code with the "`>`" prompt should be entered in the `R Console`.</i>
+<i>Code with the "`>`" prompt should be entered in the `R console`.</i>
 
 Let's get started.
 ## Setup
 
-You should have the same R/RStudio setup and the packages we loaded in <a href="{{site.url}}/R-and-PowerPoint-Part-1/">Part 1</a>.  
+We'll use the same R/RStudio setup and the packages we loaded in <a href="{{site.url}}/R-and-PowerPoint-Part-1/">Part 1</a>.  
 
 We will need some Hadley Wickham voodoo for web scraping and data manipulation.  
 1 - [`rvest`][6] Web scraping simplified.  
@@ -24,15 +25,17 @@ We will do two things in this post:
 1 - Get a list of films that Mr. Eastwood has acted in.  
 2 - Get the poster images for each of the films.  
 
-We want to put Clint Eastwood's filmography as an actor on a PowerPoint slide, using R, without as much as a point or a click.  But we will have to click through to [IMDB][2] to get the lowdown on all the movies Mr. Eastwood has starred in.  Searching for Mr. Eastwood's name get us to [his filmography page][3]. We want to extract the following data from this page:
+We want to put Clint Eastwood's filmography as an actor on a PowerPoint slide, using R, without as much as a point or a click.  But we will have to click through to [IMDB][2] to get the lowdown on all the movies Mr. Eastwood has starred in.  Searching for Mr. Eastwood's name get us to [his filmography page][3]. We want to create a data frame with the following data from this page:
 
 * Film Title.
 * Release Year.
 * URL to the film's page on IMDB (we'll need this to get the film's poster image).
 
-Being polite, we will work on a locally saved copy of the page.  In Chrome, go the `menu > Save page as... ` and save to an appropriate location.  To understand the elements we need to extract, we need the [`SelectorGadget`][4].  This nifty little tool help's identify the CSS selectors we can use to get the data we want from a web-site.  And `rvest` makes great use of the output.  You can get the [Chrome extension][5], or a [bookmarklet][4].
+We will work on a locally saved copy of the page.  In Chrome, go the `menu > Save page as... ` and save to an appropriate location.  To understand the elements we need to extract, we need the [`SelectorGadget`][4].  This nifty little tool help's identify the CSS selectors we can use to get the data we want from a web-site.  And [`rvest`][6] makes great use of the output.  You can get the [Chrome extension][5], or a [bookmarklet][4].
 
-Navigate to Mr. Eastwood's IMDB page, and start `SelectorGadget`.  Since we want to be able to select films in which Mr. Eastwood has performed as an actor, let's click on the first film under `Actor` in the `Filmography` section.  <img style="float:right;max-width:45%;" class="centre_image" src="/images/film_selector1.png"> The cell turns green, and a number of them turn yellow. The green and yellow cells will be selected if we use the CSS selector that `SelectorGadget` has identified. Clearly, we are only selecting the  a number of films won't be selected.  Let click on one of the unselected films.  Now, it seems we have all the films.  The CSS selector `.filmo-row` seems to match the data we are interested in.
+Navigate to [Mr. Eastwood's IMDB page][3].  The filmography includes movies and programs where Mr. Eastwood has participated in, not necessarily as an actor.  Since we want to be able to select films in which Mr. Eastwood has performed as an actor, we need to open up one of the other sections of the filmography to be able to deselect the other sections. <img style="float:right;max-width:45%;" class="centre_image" src="/images/film_selector1.png">
+
+I used the `Archive footage` section. Now start `SelectorGadget`. Let's select the films from the `Actor` section. This selects alternate films.  Click again on an unhighted film to select the other entries.  This of course selects all the films the Mr. Eastwood was involved, not only those as an actor.  Scroll down to the `Archive footage` section and select one of the programs.  This will deselect all the items in that section, leaving us with just the elements from the `Actor` section.  We can copy the identified CSS selectors, and paste in the R code. 
 
 Now in R:
 
@@ -48,50 +51,8 @@ clint_url <- "http://www.imdb.com/name/nm0000142/"
 local_html <- "C://path_to_page//Clint Eastwood - IMDB.html"
 
 # These are the elements that contain film information that we are interested in
-film_selector <- ".filmo-row"
-
-# Now for some rvest magic
-# Parse the html page
-clint_page <- html(local_html)
-
-# Now let's select the films
-filmography <- clint_page %>% html_nodes(film_selector)
-
-# Let's do some checks.  This is entered in the console.
-> length(filmography)
-[1] 518
-
-# Let's look at the first and last elements of the extracted nodes
-> filmography[[1]]
-<div class="filmo-row odd" id="actor-tt2083383">
-<span class="year_column">
- 2012
-</span>
-<b><a href="/title/tt2083383/?ref_=nm_flmg_act_1">Trouble with the Curve</a></b>
-<br/><a href="/character/ch0335867/?ref_=nm_flmg_act_1">Gus</a>
-</div>
-
-> filmography[[518]]
-<div class="filmo-row odd" id="archive_footage-tt0368852">
-<span class="year_column">
- 1967
-</span>
-<b><a href="/title/tt0368852/?ref_=nm_flmg_arf_45">El magnifico extranjero</a></b>
-<br/><a href="/character/ch0048101/?ref_=nm_flmg_arf_45">Rowdy Yates</a>
-</div> 
-```
-
-That seems like a lot of movies, and the last one is not one I've heard of.  Let's look at the site again.
-
-The filmography includes movies and programs where Mr. Eastwood has participated in other capacities.  Let's deselect these.  Before we fire up `SelectorGadget`, let's open up one of the other sections of the filmography. I used the `Archive footage` section. Now we can start `SelectorGadget`. Let's select the films from the `Actor` section, which lists 67 films.  This of course selects all the programs.  We can scroll down to the `Archive footage` section and select one of the programs.  This will deselect all the items in that section, leaving us with just the elements from the `Actor` section.  We can copy the identified CSS selectors, and paste in the R code.
-
-Once again:
-
-```r
-# These are the elements that contain film information that we are interested in
 film_selector <- "#filmo-head-actor+ .filmo-category-section .filmo-row"
 
-# Now for some rvest magic
 # Parse the html page
 clint_page <- html(local_html)
 
@@ -124,17 +85,17 @@ Jennings
 </div>  
 ```
 
-That looks better.  We have 67 films and the first and last films match. You can see a number of TV appearances.  Let's remove those.
+We have 67 films and the first and last films match. You can see a number of TV appearances.  Let's remove those.
 
 ```r
 filmography <- filmography[-grep("TV Movie|TV Series",html_text(filmography))]
 # Check the number of movies
-> length(filmography1)
+> length(filmography)
 [1] 60
 
 ```
 
-That's okay, but there's a lot more to do.  We'll get the title and year.  Let's look at one film node to understand how.
+We now have the movies, but there is more to do.  We want to get the title and year.  Let's look at one film node to understand how.
 
 ```r
 > filmography[[1]]
@@ -148,6 +109,8 @@ That's okay, but there's a lot more to do.  We'll get the title and year.  Let's
 ```
 
 The film year is in a `span` element.  The title is an `a` element and there's a link in the `a` element that will take us to the film's page on IMDB.
+
+Let's create a dataframe with all the elements.
 
 ```r
 films <- NULL
@@ -196,7 +159,7 @@ get_character <- function(film,filmography) {
 films$character_name <- daply(films,.(index),get_character,filmography)
 ```
 
-Now, we need to work on getting the poster images.  We'll name these based on the sequence the data is in (by release year), and add the name of the file to our data frame.
+Now, the poster images.  We'll name these based on the sequence the data is in (by release year), and add the name of the file to our data frame.
 
 ```r
 # Create a sub-directory for the images.
@@ -225,7 +188,8 @@ for (i in 1:nrow(films)) {
 [1] 52 54 55
 
 > films$title[which(films$img_file=="img/img0000.jpg")]
-[1] "Escapade in Japan"             "The First Traveling Saleslady" "Star in the Dust" 
+[1] "Escapade in Japan"             "The First Traveling Saleslady" "Star in the Dust"
+
 ```
 
 These films don't have any associated posters.  Find a jpg image for each, and save to the _img_ directory.  Rename the files according to the naming scheme.  And set the correct file name in the data frame
@@ -241,16 +205,19 @@ films[40,"title"] <- "Kelly's Heroes"
 
 # Save the data frame in a tab separated file
 write.table(films,file="eastwood_films.csv",append=FALSE,quote=TRUE,sep="\t",row.names=FALSE)
+
 ```
 
-## More web scraping
+
+## **More web scraping**
+
 I got some additional data on the box office receipts of Mr. Eastwood's films from [Box Office Mojo][9].  The code and reulting data frame is available on [Github][12]
 
-That required some work! But now have the poster images and some basic data.
-(And hopefully, know a bit more about web scraping than before!)
+That required some work! But we now have the poster images and some basic data.
+(And I know so much more about web scraping than before!)
 
 Next up:  
-Part 3 - At last! We'll use the data to play around with more advanced animation and interaction in PowerPoint.
+[Part 3][13] - About time! We'll use the data to play around with more advanced animation and interaction in PowerPoint.
 
 Previously:
 [Part 1][10] - RDCOMClient basics
@@ -264,6 +231,9 @@ Previously:
 [7]:https://github.com/hadley/stringr "stringr"
 [8]:https://github.com/hadley/plyr "plyr"
 [9]:http://www.boxofficemojo.com/people/chart/?id=clinteastwood.htm "Box Office Mojo"
-[10]:http://asifsalam.github.io/R-and-PowerPoint-Part-1/ "PowerPoint from R"
+[10]:http://asifsalam.github.io/R-and-PowerPoint-Part-1/ "PowerPoint from R - Part 1"
 [11]:https://github.com/hadley/dplyr "dplyr"
 [12]:https://github.com/asifsalam/PowerPoint_from_R "PowerPoint from R"
+[13]:http://asifsalam.github.io/R-and-PowerPoint-Part-3/ "PowerPoint from R - Part 3"
+[15]:https://youtu.be/kCxBTPDiN08 "How to create amazing PowerPoint slides - video"
+[16]:https://youtu.be/XoAanIO8zbM "PowerPoint Slide created using R - video"

@@ -1,22 +1,25 @@
 ---
 layout: post
-title: How to Create Amazing PowerPoint Slides using R - Part 1 (3)
+title: Create amazing PowerPoint slides using R - The basics
 ---
+###Part 1 (3)
 
-Let's face it, PowerPoint isn't going anywhere. Even if you use R (or Python) for data analysis, PowerPoint is how you distribute and communicate results, and learning how to create those decks as part of your R workflow can pay off.  Beyond efficiency, and repeatability, programmatic access enables you to do things that just aren't possible with point and click.  In this post, we'll learn how to automate PowerPoint using R.
+Let's face it, PowerPoint isn't going anywhere. Even if you use R (or Python) for data analysis, PowerPoint is how you distribute and communicate results, and learning how to create those decks as part of your R workflow can pay off.  Beyond efficiency, and repeatability, programmatic access enables you to do things that just aren't possible with point and click.  
 
-In this talk, [S Anand uses Python and **pywin32**][1] to create some jaw dropping effects in Powerpoint, scraping data from IMDB and creating a PowerPoint slide using the data.  [**RDCOMClient**][2] by Duncan Temple Lang allows you to do the same thing using R. It provides the ability to "access and control applications such as Excel, Word, Power Point, Web browsers etc."
+[Here's a short video of what we're aiming for][16], [how it was created][15] and [the R code.][17]
 
-We will recreate some elements of [S Anand's talk][1], and a few other things, with a focus on interaction and animation. We'll learn the basics of accessing methods and properties of PowerPoint VBA objects, scrape data on Clint Eastwood's movies from [IMDB][13], and use it to create a slide.  In the end, we should have a cool, fun PowerPoint slide with Clint Eastwood's filmography.  
+[In this talk][1], S Anand uses Python and *pywin32* to create some jaw dropping effects in PowerPoint, scraping data from IMDB and creating a PowerPoint slide using the data.  [*RDCOMClient*][2] by Duncan Temple Lang allows you to do the same thing using R. It provides the ability to "access and control applications such as Excel, Word, PowerPoint, Web browsers etc."
 
-<div class="warning"><p style="margin: 0 0 0 10px">
-    <img class="centre_image" src="/images/caution_finland_road_sign_189.svg" alt="Caution" style="width:50px; margin:2px 0 0 5px; align:left;" >
-    <b><i>I love animation, so there is a lot of it</i></b></p>
-</div>
+We'll try to recreate some elements of [S Anand's talk][1], and add a few things, with a focus on interaction and animation. We'll go through the basics of accessing methods and properties of PowerPoint VBA objects, scrape data on Clint Eastwood's movies from [IMDB][13], and use it to create a slide.  The end result should be a fun PowerPoint slide with Clint Eastwood's filmography.
 
-(Clearly PowerPoint has a powerful animation engine, and the [object model][6] allows you to programmatically manipulate almost everything. The [Microsoft documentation][5], however, seems to be organized as a challenge, at least for beginners.)
+Since the goal is to learn and explore a bit, there will be lots of code and animation that's not strictly necessary.
 
-Let's get started.  
+(Clearly PowerPoint has a powerful animation engine, and the [object model][6] allows you to programmatically manipulate almost everything. The [Microsoft documentation][5], however, seems to be organized as a mystery.)
+
+In this first part, we look at the basics of manipulating PowerPoint from R. 
+
+Let's get started.
+
 ##Setup
 I'm using:
 
@@ -27,7 +30,7 @@ I'm using:
 
 For now we just need this one package.
 
-1. [RDOCMClient][2] by Duncan Temple Lang. COM client that allows us to manipulate PowerPoint through R.  
+1. [RDOCMClient][2] by Duncan Temple Lang. COM client that allows us to manipulate PowerPoint using R.  
 
 Start RStudio and Load the packages:
 
@@ -94,7 +97,7 @@ End Sub
 
 ```
 
-As you can see, Microsoft has defined a set of constants for each element of the presentation, such as shape, animation, trigger, etc.  I remember I had to search for a while to find a consolidated list of all the enumerated constants.  I created [a file][12] and just read them into one variable, `ms`. (Download it to your working directory if you want to execute the code.)
+The code above has constants that Microsoft has defined for each element of the presentation, such as shape, animation, trigger, etc.  It wasn't easy to find a consolidated list of all the enumerated constants.  (I could not find the site I got the constants from, so apologies for the lack of attribution.)  I created [a file][12] and just read them into one variable, `ms`. (Download it to your working directory if you want to execute the code.)
 
 In the `AddEffect` method above, you'll notice an "empty" argument.  That tripped me up for a while, since it doesn't work with R.
 The [AddEffect method][8] shows the arguments the method expect `(expression.AddEffect(Shape, effectId, Level, trigger, Index))`.  Using an explicitly named argument (trigger) works.
@@ -177,10 +180,10 @@ presentation$SaveAs(paste0(getwd(),"/PowerPoint_R_Part_1.pptx"))
 ```
 The code and the PowerPoint file created are available from [Github](https://github.com/asifsalam/PowerPoint_from_R).
 
-In <a href="{{site.url}}/R-and-PowerPoint-Part-2/">Part 2</a>, we scrape some data using [`rvest`][4] and create a dataset of Clint Eastwood's movies.  
-
-Coming up:  
-Part 3 - Then some fun! We'll use the data to play around with more advanced animation and interaction in PowerPoint.
+Coming up:<br>
+In <a href="{{site.url}}/R-and-PowerPoint-Part-2/">Part 2</a>, we scrape some data using [`rvest`][4] and create a dataset of Clint Eastwood's movies. 
+  
+[Part 3][14] - Then some fun! We'll use the data to play around with more advanced animation and interaction in PowerPoint.
 
 [1]:https://www.youtube.com/watch?v=aKCXj1DyEhM "S Anand YouTube"
 [2]:http://www.omegahat.org/RDCOMClient/ "RCDOMClient"
@@ -195,3 +198,7 @@ Part 3 - Then some fun! We'll use the data to play around with more advanced ani
 [11]:https://msdn.microsoft.com/EN-US/library/office/ff746145.aspx "Fill Property"
 [12]:https://github.com/asifsalam/PowerPoint_from_R/blob/master/mso.txt "mso.txt"
 [13]:http://www.imdb.org/ "IMDB"
+[14]:http://asifsalam.github.io/R-and-PowerPoint-Part-3/ "PowerPoint from R - Part 3"
+[15]:https://youtu.be/kCxBTPDiN08 "How to create amazing PowerPoint slides - video"
+[16]:https://youtu.be/XoAanIO8zbM "PowerPoint Slide created using R - video"
+[17]:https://github.com/asifsalam/PowerPoint_from_R "Github"
