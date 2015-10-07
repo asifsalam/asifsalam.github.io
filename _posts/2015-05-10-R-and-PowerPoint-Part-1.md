@@ -6,7 +6,7 @@ title: Create amazing PowerPoint slides using R - The basics
 
 Let's face it, PowerPoint isn't going anywhere. Even if you use R (or Python) for data analysis, PowerPoint is how you distribute and communicate results, and learning how to create those decks as part of your R workflow can pay off.  Beyond efficiency, and repeatability, programmatic access enables you to do things that just aren't possible with point and click.  
 
-[Here's a short video of what we're aiming for][16], [how it was created][15] and [the R code.][17]
+([Here's a short video of what we're aiming for][16], [how it was created][15] and [the R code.][17])
 
 [In this talk][1], S Anand uses Python and *pywin32* to create some jaw dropping effects in PowerPoint, scraping data from IMDB and creating a PowerPoint slide using the data.  [*RDCOMClient*][2] by Duncan Temple Lang allows you to do the same thing using R. It provides the ability to "access and control applications such as Excel, Word, PowerPoint, Web browsers etc."
 
