@@ -40,7 +40,10 @@ download.file("https://raw.githubusercontent.com/asifsalam/PowerPoint_from_R/mas
 
 films <- read.table("films.csv",header=TRUE, stringsAsFactors=FALSE)
 box_office <- read.table("box_office.csv",header=TRUE, stringsAsFactors=FALSE)
+
+#Source the enumerated constants defined by Microsoft.
 source("mso.txt")
+
 actor_name <- "Clint Eastwood"
 img_dir <- "img"
 ```
