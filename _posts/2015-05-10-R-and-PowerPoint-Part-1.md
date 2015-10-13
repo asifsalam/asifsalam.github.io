@@ -61,7 +61,8 @@ pp[["Visible"]] = 1
 presentation <- pp[["Presentations"]]$Add()
 
 # The presentation is empty.  Add a slide to it.
-# We'll get to the enumerated constants defined by Microsoft.  For now, let's use the value (12) that results in a blank layout.
+# We'll get to the enumerated constants defined by Microsoft.  
+# For now, let's use the value (12) that results in a blank layout.
 # slide1 <- presentation[["Slides"]]$Add(1,ms$ppLayoutBlank)
 slide1 <- presentation[["Slides"]]$Add(1,12)
      
